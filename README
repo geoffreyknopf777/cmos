@@ -1,0 +1,49 @@
+cmos documentation
+
+command line options:
+cmos [ -i | -u | -a node days | -d node | -c | -l | -e email1 [email2 ...] | -s | -b filename | -r filename ]
+
+synopsis:
+cmos is designed to allow network administrators
+to easily keep track of cmos battery life.
+It is developed and tested for FreeBSD.
+
+details:
+-i,install
+  installs cmos
+  adds "cmos -c" command in /etc/periodic/daily as "900-cmos"
+  creates mysql database "cmos" if not already present
+  creates tables "nodes" and "emails"
+-u,uninstall
+  uninstalls cmos
+  removes "900-cmos" from /etc/periodic/daily
+  deletes "cmos" database from mysql
+-a,--add node days
+  add a node to the database
+-d,--delete node
+  delete a node from the database
+-c,--countdown
+  update all cmos countdowns.
+  should be called daily by a script in /etc/periodic/daily.
+  sends email alerts when countdown=0 for each node
+-l,--list
+  lists nodes in database
+  | node | cmos_life (days) | cmos_countdown (days) |
+  ---------------------------------------------------
+-e,--email email1 [email2 ...]
+  specify emails of cmos alert recepients
+-s,--show
+  show list of email recepients
+-b,--backup filename
+  backup database "cmos" into filename
+-r,--restore filename
+  restore filename into "cmos" database
+
+dependencies:
+cmos relies on mysql and mail
+
+installation:
+type "make" in the source directory
+move the executable "cmos" to /usr/bin so it can be accessed from the command line
+  may need to type "chmod +x cmos" to make the file executable
+  'cp "cmos" /usr/bin/cmos' will move the executable to the correct directory
