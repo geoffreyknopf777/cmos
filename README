@@ -1,7 +1,7 @@
 cmos documentation
 
 command line options:
-cmos [ -i | -u | -a node days | -d node | -c | -l | -e email1 [email2 ...] | -s | -b filename | -r filename ]
+cmos [ -i | -u | -a node days | -d node | -m node | -c | -l | -e email1 [email2 ...] | -s | -b filename | -r filename ]
 
 synopsis:
 cmos is designed to allow network administrators
@@ -22,6 +22,9 @@ details:
   add a node to the database
 -d,--delete node
   delete a node from the database
+-m,--mend node
+  after a node's cmos battery has been replaced, mend should be invoked.
+	it will reset the specified node's countdown.
 -c,--countdown
   update all cmos countdowns.
   should be called daily by a script in /etc/periodic/daily.
